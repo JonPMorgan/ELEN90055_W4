@@ -39,9 +39,10 @@ yp = out.mobpenl(1)*cos(180\pi*phs);
 
 xmin = min(min(xc,xp));
 xmax = max(max(xc,xp));
+delta = 0.01;
 
 figure;
-plot(xmin,-0.6,xmax,0.6);
+plot(xmin-delta,-0.6,xmax+delta,0.6);
 xlabel('Position along the rail');
 ylabel('Position above/below the rail');
 title('Pendulum (circle) on a mobile platform (square)');

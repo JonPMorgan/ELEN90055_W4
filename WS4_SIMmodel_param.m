@@ -32,7 +32,13 @@ G0 = tf([c],[1, b, -k]);
 % Controller Model
 %%%%%%%%%%%%%%%%%%%%%%%
 
-pendCnum = 1;  % numerator of pendulum motor controller
+%Try a Lead Compensator
 
-pendCden = 1;  % denominator of pendulum motor controller
+Kc = 1000;                  % controller gain
+zc = -6;                    % controller zero
+pc = -100;                  % controller pole
+C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
+
+pendCnum = Kc*[1 -zc];  % numerator of pendulum motor controller
+pendCden = [1 -pc];  % denominator of pendulum motor controller
 
