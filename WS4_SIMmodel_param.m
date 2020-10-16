@@ -32,9 +32,9 @@ G0 = tf([c],[1, b, -k]);
 % Controller Model
 %%%%%%%%%%%%%%%%%%%%%%%
 
-%Try a Lead Compensator
+% Try a Lead Compensator
 
-Kc = 1000;                  % controller gain
+Kc = 15000;                  % controller gain
 zc = -6;                    % controller zero
 pc = -100;                  % controller pole
 C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
@@ -42,3 +42,14 @@ C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
 pendCnum = Kc*[1 -zc];  % numerator of pendulum motor controller
 pendCden = [1 -pc];  % denominator of pendulum motor controller
 
+T = G0*C/(1+G0*C);          % complimentary sensitivity TF
+S = 1/(1+G0*C);             % sensitivity TF
+
+close all
+bode(T)
+hold on
+bode(G0*C)
+bode(S)
+legend('T','\Lambda','S')
+
+% out = sim('WS4_SIMmodel_v2017b');

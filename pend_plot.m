@@ -61,6 +61,6 @@ end
 
 close gcf;
 
-mobpendFig = figure; movie(mobpendFig,mobpendMov,1,1/dt);
+% mobpendFig = figure; movie(mobpendFig,mobpendMov,1,1/dt);
 
 

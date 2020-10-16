@@ -12,8 +12,39 @@ ThDotRef = 90;      % (rad/s)
 
 initcond = [0; -0.05; 0; 0]; % inital conditins - theta (rad); phi (rad); thdot (rad/s); phdot (rad/s)
 
-K = 1         % constant gain drive motor controller
+K = 1;         % constant gain drive motor controller
 
-pendCnum = 1  % numerator of pendulum motor controller
+%%%%%%%%%%%%%%%%%%%%%%
+% Nominal Model Parameters
+%%%%%%%%%%%%%%%%%%%%%%
 
-pendCden = 1  % denominator of pendulum motor controller
+b = 1.15;
+k = 20;
+c = 0.0524;
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Linearised Model
+%%%%%%%%%%%%%%%%%%%%%%%
+
+G0 = tf([c],[1, b, -k]);
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Controller Model
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Try a Lead Compensator
+
+Kc = 5000;                  % controller gain
+zc = -6;                    % controller zero
+pc = -100;                  % controller pole
+C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
+
+pendCnum = Kc*[1 -zc];  % numerator of pendulum motor controller
+pendCden = [1 -pc];  % denominator of pendulum motor controller
+
+T = G0*C/(1+G0*C);          % complimentary sensitivity TF
+S = 1/(1+G0*C);             % sensitivity TF
+
+
+
+sim('WS4_SIMmodel_v201
