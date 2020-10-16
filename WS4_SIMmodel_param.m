@@ -1,19 +1,38 @@
 % Mobile pendulum simulink model parameters - ELEN90055 Workshops 4
 
-SqWaveFreq = 1/18    % frequency of test signal and reference repetition (Hz)
+SqWaveFreq = 1/18;    % frequency of test signal and reference repetition (Hz)
 
-ThRef = 45         % (rad)
+ThRef = 45;         % (rad)
 
-ThDotRef = 90      % (rad/s)
+ThDotRef = 90;      % (rad/s)
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % PARAMETERS TO ADJUST
 %%%%%%%%%%%%%%%%%%%%%%%
 
-initcond = [0; -0.05; 0; 0] % inital conditins - theta (rad); phi (rad); thdot (rad/s); phdot (rad/s)
+initcond = [0; -0.05; 0; 0]; % inital conditins - theta (rad); phi (rad); thdot (rad/s); phdot (rad/s)
 
-K = 1         % constant gain drive motor controller
+K = 1;         % constant gain drive motor controller
 
-pendCnum = 1  % numerator of pendulum motor controller
+%%%%%%%%%%%%%%%%%%%%%%
+% Nominal Model Parameters
+%%%%%%%%%%%%%%%%%%%%%%
 
-pendCden = 1  % denominator of pendulum motor controller
+b = 1.15;
+k = 20;
+c = 0.0524;
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Linearised Model
+%%%%%%%%%%%%%%%%%%%%%%%
+
+G0 = tf([c],[1, b, -k]);
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Controller Model
+%%%%%%%%%%%%%%%%%%%%%%%
+
+pendCnum = 1;  % numerator of pendulum motor controller
+
+pendCden = 1;  % denominator of pendulum motor controller
+
