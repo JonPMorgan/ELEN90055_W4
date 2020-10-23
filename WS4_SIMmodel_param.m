@@ -1,4 +1,6 @@
 % Mobile pendulum simulink model parameters - ELEN90055 Workshops 4
+close all
+clear
 
 SqWaveFreq = 1/18;    % frequency of test signal and reference repetition (Hz)
 
@@ -34,22 +36,36 @@ G0 = tf([c],[1, b, -k]);
 
 % Try a Lead Compensator
 
-Kc = 15000;                  % controller gain
-zc = -6;                    % controller zero
-pc = -100;                  % controller pole
-C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
+% Kc = 22000*1.3;             % controller gain
+% zc = -6;                    % controller zero
+% pc = -100;                  % controller pole
+% C = tf(Kc*[1 -zc],[1 -pc]); % controller TF
 
-pendCnum = Kc*[1 -zc];  % numerator of pendulum motor controller
-pendCden = [1 -pc];  % denominator of pendulum motor controller
+syms tz tp Kc positive
+% want wc = 15 rad/s
+eqn1 = 1/sqrt(tz*tp) == 15;
+eqn2 = sin(deg2rad(80)) == (tz-tp)/(tz+tp);
+[tz, tp] = solve(eqn1, eqn2, tz, tp);
+% 20*log(K*tz/tp)/2 = 73.5
+% Kc = 316;%1; %double(10^7.35*tp/tz);
+Kc = 10^(52/20);
+tz = double(tz);
+tp = double(tp);
+C = tf(Kc*[tz 1],[tp 1]); % controller TF
+
+pendCnum = Kc*[tz 1];  % numerator of pendulum motor controller
+pendCden = [tp 1];  % denominator of pendulum motor controller
 
 T = G0*C/(1+G0*C);          % complimentary sensitivity TF
 S = 1/(1+G0*C);             % sensitivity TF
+Gol = G0*C;
 
 close all
 bode(T)
 hold on
-bode(G0*C)
+margin(Gol)
 bode(S)
 legend('T','\Lambda','S')
+
 
 % out = sim('WS4_SIMmodel_v2017b');

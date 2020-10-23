@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+\usepackage{fancyhdr}
+\usepackage[headings]{fullpage}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsmath, nccmath}
+\usepackage{amssymb}
+\usepackage{calc}
+\usepackage{siunitx}
+\sisetup{output-complex-root=\ensuremath{\mathnormal{j}}}
+\usepackage{pgfplots}
+\usepackage{steinmetz}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+\usepackage{leftidx} % http://ctan.org/pkg/leftidx
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage[section]{placeins}
+\usepackage{subcaption}
+
+\allowdisplaybreaks
+
+%header & footer
+\pagestyle{fancy}
+\fancyhf{} 
+\lhead{\thepage}
+\rhead{\rightmark}
+\cfoot{\thepage}
+
+\newcommand{\bvec}[3]{\leftidx{#1}{\mathbf{#2}}{#3}}
+\newcommand{\rot}[2]{\leftidx{_{#1}^{#2}}{\mathbf{R}}{}}
+\newcommand{\der}[3]{\frac{d^{#1}{#2}}{d#3^{#1}}}
+
+\begin{document}
+	
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+	
+\begin{center} % Center everything on the page
+	\thispagestyle{plain}
+	%----------------------------------------------------------------------------------------
+	%	HEADING SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	\textsc{\LARGE ELEN90055 Control Systems Workshop 4}\\[1.5cm] % Name of your university/college
+	\textsc{\Large Group 22}\\[0.5cm] % Major heading such as course name
+	\textsc{\large }\\[0.5cm] % Minor heading such as course title
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\HRule \\[0.4cm]
+	{ \huge \bfseries Inverted Pendulum on a Cart Control }\\[0.4cm] % Title of your document
+	\HRule \\[1.5cm]
+	
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR SECTION
+	%----------------------------------------------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft} \large
+			\emph{Authors:}\\
+			Jin \textsc{Chen} \\
+			Jonathan \textsc{Morgan} \\
+			Lucas \textsc{Soklevski}
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright} \large
+			\emph{Student ID:} \\
+			\textsc{961747} \\
+			\textsc{983419} \\
+			\textsc{910910}
+		\end{flushright}
+	\end{minipage}\\[2cm]
+	
+	% If you don't want a supervisor, uncomment the two lines below and remove the section above
+	%\Large \emph{Author:}\\
+	%John \textsc{Smith}\\[3cm] % Your name
+	
+	%----------------------------------------------------------------------------------------
+	%	DATE SECTION
+	%----------------------------------------------------------------------------------------
+	
+	%{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+	
+	%----------------------------------------------------------------------------------------
+	%	LOGO SECTION
+	%----------------------------------------------------------------------------------------
+	
+	%\includegraphics{logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+	
+	%----------------------------------------------------------------------------------------
+	
+	%\vfill % Fill the rest of the page with whitespace
+\end{center}
+
+\section{Introduction}
+
+\section{Control Design}
+
+\section{Implementation and Evaluation}
+
+\section{Conclusion}
+
+
+\end{document}
